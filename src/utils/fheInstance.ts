@@ -11,10 +11,12 @@ export async function initializeFheInstance() {
   }
 
   // Load SDK from CDN (0.2.0)
-  const sdk: any = await import("https://cdn.zama.org/relayer-sdk-js/0.3.0-5/relayer-sdk-js.umd.cjs");
+  // const sdk: any = await import("https://cdn.zama.org/relayer-sdk-js/0.3.0-5/relayer-sdk-js.umd.cjs");
 
-  const { initSDK, createInstance, SepoliaConfig } = sdk as any;
+  // const { initSDK, createInstance, SepoliaConfig } = sdk as any;
 
+  const { initSDK, createInstance, SepoliaConfig } = await import ('@zama-fhe/relayer-sdk/bundle')
+  
   await initSDK(); // Loads WASM
   const config = { ...SepoliaConfig, network: window.ethereum };
   try {
